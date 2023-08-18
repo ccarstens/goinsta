@@ -85,7 +85,7 @@ func (comments *Comments) toggleComments(endpoint string) error {
 
 // Next allows comment pagination.
 //
-// This function support concurrency methods to get comments using Last and Next ID
+// # This function support concurrency methods to get comments using Last and Next ID
 //
 // New comments are stored in Comments.Items
 func (comments *Comments) Next() bool {
@@ -199,8 +199,9 @@ func (insta *Instagram) bulkDelComments(c []*Comment) error {
 //
 // If limit is <= 0 DeleteMine will delete all your comments.
 // Be careful with using this on posts with a large number of comments,
-//  as a large number of requests will be made to index all comments.This
-//  can result in a ratelimiter being tripped.
+//
+//	as a large number of requests will be made to index all comments.This
+//	can result in a ratelimiter being tripped.
 //
 // See example: examples/media/commentsDelMine.go
 func (comments *Comments) DeleteMine(limit int) error {
@@ -267,6 +268,7 @@ type Comment struct {
 
 func (c *Comment) setValues(insta *Instagram) {
 	c.User.insta = insta
+	c.insta = insta
 	for i := range c.OtherPreviewUsers {
 		c.OtherPreviewUsers[i].insta = insta
 	}
